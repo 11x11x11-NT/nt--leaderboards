@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nitro Type Leaderboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Nitro Type Leaderboard</h1>
+    <table id="leaderboard">
+        <tr>
+            <th>Rank</th>
+            <th>Player</th>
+            <th>WPM</th>
+            <th>Races</th>
+        </tr>
+    </table>
+    <script>
+        async function fetchPlayers() {
+            const response = await fetch('/api/players');
+            const players = await response.json();
+            const leaderboard = document.getElementById('leaderboard');
+
+            players.forEach(player => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${player.rank}</td>
+                    <td>${player.name}</td>
+                    <td>${player.wpm}</td>
+                    <td>${player.races}</td>
+                `;
+                leaderboard.appendChild(row);
+            });
+        }
+
+        fetchPlayers();
+    </script>
+</body>
+</html>
