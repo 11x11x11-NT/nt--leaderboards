@@ -1,0 +1,13 @@
+npm init -y
+{
+  "name": "nt-leaderboards",
+  "version": "1.0.0",
+  "description": "NT Leaderboards project",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
